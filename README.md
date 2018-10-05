@@ -1,6 +1,9 @@
 # Logging stuff
 We need to log stuff to keep track of things. That's what this should do, but it doesn't exist yet. Read through the requirements here and create your own program that implements this. To keep track of things, just make your own branch titled after yourself and write your program there.
 
+
+#### *Remember- All of this stuff is more of a suggestion. If you have a different way to do it, go for it!*
+
 ## Differet Priority levels
 You don't always want to see every log message. For example, when running normally, you probably only want to see the basic information and big errors. For this reason, there are several different error levels:
 
