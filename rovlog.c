@@ -1,19 +1,67 @@
 #include "rovlog.h"
-// You're probably going to want to include other things to use printf() and stuff like that.
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
 
+char PATH[100];
+loglevel LEVEL = INFO;
 
 void rl_setfile(char *path) {
     // Set the file to be written to.
-    // How does this get stored in a way all functions here can see it?
+    strcpy(PATH, path);
 }
 
+/**
+ * Set the level to do logging at.
+ * @param loglevel level: The level to be set to
+ */
 void rl_setlevel(loglevel level) {
-    // Set the level to do logging at. 
-    // Like before, how does this get stored in a way all functions can see it?
+	LEVEL = level;
 }
 
+char *level_to_string(loglevel level) {
+    switch(level) {
+        case DEBUG:
+            return "DEBUG";
+        case INFO:
+            return "INFO "; // That space at the end keeps everything the same length
+        case WARN:
+            return "WARN ";
+        case ERROR:
+            return "ERROR";
+        case FATAL:
+            return "FATAL";
+        default:
+            return "UNK  ";
+    }
+}
+
+/**
+ * Log to the file and stdout.
+ * @param loglevel level: The level this message should appear at
+ * @param char* message:  The message to be logged.
+ */
 void rovlog(loglevel level, char* message) {
-    // Log stuff!
-    // You'll need to write to the file path and to standard out only if the level
-    // you get here is at or more severe than what was set by the user in rl_setlevel().
+	//struct timeval tv;
+	//gettimeofday(&tv,NULL);
+	//printf("[%li:%li:%li]",tv.tv_hour,tv.tv_min,tv.tv_sec);
+    // Log stuff, but only if the level is severe enough.
+    if(level >= LEVEL){
+        char timstamp[6] = "00:00";
+        // Set the timestamp string here
+
+        char levelstring[6] = "UNK  ";
+        strcpy(levelstring, level_to_string(level));
+
+        sprintf("[%s][%s] %s", levelstring, message);
+
+    	// Print to stdout
+        printf ("%s\n",message);
+
+        // Print to a file
+        FILE* logfile = fopen(PATH, "w");
+        fprintf(logfile, "%s\n", message);
+        fclose(logfile);
+    }
 }

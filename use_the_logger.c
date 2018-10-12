@@ -20,6 +20,7 @@ int main(void) {
     rovlog(ERROR, "Can't write to socket, trying again (3/3)...");
     rovlog(FATAL, "Could not write to socket to communicate with ROV. Exiting.");
 
+
     return 0; // All done!
 }
 
