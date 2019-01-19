@@ -43,9 +43,6 @@ char *level_to_string(loglevel level) {
  * @param char* message:  The message to be logged.
  */
 void rovlog(loglevel level, char* message) {
-	//struct timeval tv;
-	//gettimeofday(&tv,NULL);
-	//printf("[%li:%li:%li]",tv.tv_hour,tv.tv_min,tv.tv_sec);
     // Log stuff, but only if the level is severe enough.
     if(level >= LEVEL){
         char timstamp[6] = "00:00";
