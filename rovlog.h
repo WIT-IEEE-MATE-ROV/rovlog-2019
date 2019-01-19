@@ -21,4 +21,9 @@ void rl_setfile(char *path);
 void rl_setlevel(loglevel level);
 void rovlog(loglevel level, char* message);
 
+#define ROVERR_LOSTCONNECTION 0x404
+#define ROVERR_HEATSHUTDOWN   0xF112E
+#define ROVERR_PLEASEDIE      0xD1E
+int ROVERR = 0;
+
 #endif

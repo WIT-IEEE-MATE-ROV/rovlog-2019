@@ -64,4 +64,33 @@ void rovlog(loglevel level, char* message) {
         fprintf(logfile, "%s\n", message);
         fclose(logfile);
     }
+	
+	int safe_shutdown() {
+	    switch(ROVERR) {
+	        case ROVERR_LOSTCONNECTION:
+	            rovlog(FATAL, "I've lost connection to the surface, and can't re-establish a connection");
+	            rovlog(FATAL, "I'm going to try shutting everything down and bringing it back up again...");
+                // TODO
+	            rovlog(FATAL, "... Done.");
+	            break;
+	
+	        case ROVERR_HEATSHUTDOWN:
+	            rovlog(FATAL, "Too much heat! I'm shutting down to protect myself.");
+                //TODO
+	            rovlog(FATAL, "Aborted children. Stopping self now.");
+                //TODO
+	            break;
+	
+	        case ROVERR_PLEASEDIE:
+	            rovlog(FATAL, "Someone asked very nicely for me to shut myself down. Bye!");
+                //TODO
+	            break;
+	
+	        default:
+	            rovlog(FATAL, "Got an unrecognized shutdown request. Ignoring and resetting ROVERR. Fix that.");
+	            ROVERR = 0;
+	            break;
+	    }
+	    return ROVERR;
+	}
 }
