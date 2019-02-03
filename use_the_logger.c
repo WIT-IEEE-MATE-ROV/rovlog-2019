@@ -4,6 +4,8 @@ int main(void) {
     // Setting the path of the log (the actual file where the log exists)
     rl_setfile("./rovlog.txt");
 
+    rl_setsource("Use the logger");
+
     // Setting the level of stuff to be logged
     // In this case, it's set to WARNING- feel free to change it for testing!
     rl_setlevel(WARN);

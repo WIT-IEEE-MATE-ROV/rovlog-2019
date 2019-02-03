@@ -19,11 +19,11 @@ typedef enum LogLevel { DEBUG, INFO, WARN, ERROR, FATAL } loglevel;
 // These are called function prototypes: https://en.wikipedia.org/wiki/Function_prototype
 void rl_setfile(char *path);
 void rl_setlevel(loglevel level);
+void rl_setsource(char *source);
 void rovlog(loglevel level, char* message);
 
 #define ROVERR_LOSTCONNECTION 0x404
 #define ROVERR_HEATSHUTDOWN   0xF112E
 #define ROVERR_PLEASEDIE      0xD1E
-int ROVERR = 0;
 
 #endif
