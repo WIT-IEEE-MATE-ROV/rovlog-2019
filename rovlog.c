@@ -3,14 +3,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/time.h>
+#include <stdbool.h>
 
 char PATH[100];
 char SOURCE[100];
+bool USE_FILE = false;
 loglevel LEVEL = INFO;
 
 void rl_setfile(char *path) {
     // Set the file to be written to.
     strcpy(PATH, path);
+    USE_FILE = true;
 }
 
 /**
@@ -62,9 +65,11 @@ void rovlog(loglevel level, char* message) {
     	// Print to stdout
         printf ("%s\n", messageout);
 
-        // Print to a file
-        FILE* logfile = fopen(PATH, "w");
-        fprintf(logfile, "%s\n", messageout);
-        fclose(logfile);
+        if(USE_FILE) {
+            // Print to a file
+            FILE* logfile = fopen(PATH, "w");
+            fprintf(logfile, "%s\n", messageout);
+            fclose(logfile);
+        }
     }
 }
