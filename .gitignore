@@ -1,6 +1,8 @@
 # Ignore compiled files
 rovmode
 rovtest
+rovlog-client
+rovlog-server
 
 # Ignore operating system stuff
 *.swp
